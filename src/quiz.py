@@ -54,6 +54,10 @@ QUESTIONS = [
 ]
 
 
+def normalize_answer(answer: str) -> str:
+    return answer.strip().upper()
+
+
 def run_quiz():
     print("=" * 50)
     print("  Welcome to the MCP Knowledge Quiz!")
@@ -70,9 +74,10 @@ def run_quiz():
             print(f"  {letter}) {text}")
         print()
 
-        user_answer = input("Your answer: ")
+        user_answer = normalize_answer(input("Your answer: "))
+        expected_answer = normalize_answer(q["answer"])
 
-        if user_answer == q["answer"]:
+        if user_answer == expected_answer:
             print("✅ Correct!\n")
             score += 1
         else:
