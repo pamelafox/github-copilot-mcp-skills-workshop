@@ -71,8 +71,9 @@ def run_quiz():
         print()
 
         user_answer = input("Your answer: ")
+        normalized_answer = user_answer.strip().upper()
 
-        if user_answer == q["answer"]:
+        if normalized_answer == q["answer"]:
             print("✅ Correct!\n")
             score += 1
         else:
