@@ -1,5 +1,7 @@
 """MCP Knowledge Quiz - Test your knowledge of the Model Context Protocol!"""
 
+import random
+
 QUESTIONS = [
     {
         "question": "What does MCP stand for?",
@@ -60,10 +62,12 @@ def run_quiz():
     print("=" * 50)
     print()
 
+    questions = list(QUESTIONS)
+    random.shuffle(questions)
     score = 0
 
-    for i, q in enumerate(QUESTIONS):
-        print(f"Question {i + 1} of {len(QUESTIONS)}")
+    for i, q in enumerate(questions):
+        print(f"Question {i + 1} of {len(questions)}")
         print(q["question"])
         print()
         for letter, text in q["options"].items():
@@ -76,11 +80,13 @@ def run_quiz():
             print("✅ Correct!\n")
             score += 1
         else:
-            print("❌ Wrong!\n")
+            correct_option = q["answer"]
+            correct_text = q["options"][correct_option]
+            print(f"❌ Wrong! The correct answer was {correct_option}) {correct_text}\n")
 
     print("=" * 50)
-    print(f"  Quiz complete! Your score: {score}/{len(QUESTIONS)}")
-    pct = score / len(QUESTIONS) * 100
+    print(f"  Quiz complete! Your score: {score}/{len(questions)}")
+    pct = score / len(questions) * 100
     print(f"  Percentage: {pct:.0f}%")
     print("=" * 50)
 
